@@ -179,6 +179,14 @@ syn keyword     uvmClass                        uvm_driver
     syn keyword uvmClass                        uvm_seq_item_pull_port
     syn keyword uvmClass                        uvm_analysis_port
 
+" comp/uvm_scoreboard.svh
+
+syn keyword     uvmClass                        uvm_scoreboard
+
+" comp/uvm_test.svh
+
+syn keyword     uvmClass                        uvm_test
+
 " macros/uvm_sequence_defines.svh
 
 syn match       uvmMacro                        "\`uvm_create"
