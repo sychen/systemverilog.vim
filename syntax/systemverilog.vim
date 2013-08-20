@@ -31,7 +31,13 @@ syn keyword     systemverilogStatement          class endclass
 syn keyword     systemverilogStatement          function endfunction
 syn keyword     systemverilogStatement          task endtask
 syn keyword     systemverilogStatement          package endpackage
+syn keyword     systemverilogStatement          module endmodule
+syn keyword     systemverilogStatement          interface endinterface
+syn keyword     systemverilogStatement          import
 syn keyword     systemverilogStatement          new
+syn keyword     systemverilogStatement          parameter
+syn keyword     systemverilogStatement          force
+syn keyword     systemverilogStatement          assign
 
 syn keyword     systemverilogConditional        if else while foreach for
 syn keyword     systemverilogConditional        fork join disable join_any join_none wait
@@ -49,6 +55,7 @@ syn keyword     systemverilogTypeStatement      string
 syn keyword     systemverilogTypeStatement      logic bit
 syn keyword     systemverilogTypeStatement      event time
 syn keyword     systemverilogTypeStatement      process
+syn keyword     systemverilogTypeStatement      reg
 syn keyword     systemverilogStatement          type
 syn keyword     systemverilogStatement          enum
 
@@ -62,6 +69,22 @@ syn match       systemverilogSystemTask         "\$sformatf\>"
 syn match       systemverilogSystemTask         "\$sformat\>"
 syn match       systemverilogSystemTask         "\$bits"
 syn match       systemverilogSystemTask         "\$cast"
+
+syn match       systemverilogCompilerDirective "`celldefine"
+syn match       systemverilogCompilerDirective "`default_nettype"
+syn match       systemverilogCompilerDirective "`define"
+syn match       systemverilogCompilerDirective "`else"
+syn match       systemverilogCompilerDirective "`elsif"
+syn match       systemverilogCompilerDirective "`endcelldefine"
+syn match       systemverilogCompilerDirective "`endif"
+syn match       systemverilogCompilerDirective "`ifdef"
+syn match       systemverilogCompilerDirective "`ifndef"
+syn match       systemverilogCompilerDirective "`line"
+syn match       systemverilogCompilerDirective "`nounconnected_drive"
+syn match       systemverilogCompilerDirective "`resetall"
+syn match       systemverilogCompilerDirective "`timescale"
+syn match       systemverilogCompilerDirective "`unconnected_drive"
+syn match       systemverilogCompilerDirective "`undef"
 
 " uvm_pkg.sv
 
@@ -243,6 +266,7 @@ hi def link systemverilogOperator           Special
 hi def link systemverilogString             String
 hi def link systemverilogIdentifier         Identifier
 hi def link systemverilogSystemTask         Macro
+hi def link systemverilogCompilerDirective  Define
 hi def link uvmMacro                        Macro
 hi def link uvmClass                        Type
 hi def link uvmPackage                      Identifier
