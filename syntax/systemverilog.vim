@@ -38,6 +38,7 @@ syn keyword     systemverilogStatement          new
 syn keyword     systemverilogStatement          parameter
 syn keyword     systemverilogStatement          force
 syn keyword     systemverilogStatement          assign
+syn keyword     systemverilogStatement          repeat
 
 syn keyword     systemverilogConditional        if else while foreach for
 syn keyword     systemverilogConditional        fork join disable join_any join_none wait
@@ -48,6 +49,7 @@ syn keyword     systemverilogStatement          virtual extends public local pro
 syn keyword     systemverilogStatement          extern static unsigned ref inout input output const
 syn keyword     systemverilogStatement          return
 syn keyword     systemverilogIdentifier         super this
+syn keyword     systemverilogStorageClass       rand
 
 syn keyword     systemverilogTypeStatement      void
 syn keyword     systemverilogTypeStatement      int integer
@@ -176,6 +178,7 @@ syn keyword uvmClass                        uvm_sequencer_base
     syn keyword uvmClass                        uvm_sequence_request
     syn keyword uvmClass                        uvm_sequencer_arb_mode
     syn match   uvmMacro                        "\`uvm_warning"
+    syn match   uvmMacro                        "\`uvm_info"
 
 
 " seq/uvm_sequencer_param_base.svh
@@ -244,6 +247,10 @@ syn keyword     uvmClass                        uvm_domain
 syn keyword     uvmClass                        uvm_bitstream_t
 syn keyword     uvmFunction                     get_config_int
 
+syn match       uvmMacro                        "\`uvm_object_utils"
+
+" Stuff can not be published
+runtime syntax/systemverilog-local.vim
 
 " Modify the following as needed.
 " The trade-off is performance versus functionality
@@ -261,6 +268,7 @@ hi def link systemverilogTypeStatement      Type
 " hi def link systemverilogTypeDefStatement   TypeDef
 hi def link systemverilogTypeDefStatement   Statement
 hi def link systemverilogClass              Type
+hi def link systemverilogStorageClass       Type
 " hi def link systemverilogOperator           Operator
 hi def link systemverilogOperator           Special
 hi def link systemverilogString             String
