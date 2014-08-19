@@ -40,7 +40,7 @@ syn keyword     systemverilogStatement          force
 syn keyword     systemverilogStatement          assign
 syn keyword     systemverilogStatement          repeat
 
-syn keyword     systemverilogConditional        if else while foreach for
+syn keyword     systemverilogConditional        if else while foreach for do
 syn keyword     systemverilogConditional        fork join disable join_any join_none wait
 syn keyword     systemverilogStatement          initial forever
 
@@ -145,6 +145,14 @@ syn keyword     uvmClass                        uvm_object
 
     syn keyword uvmFunction                     uvm_report_warning
 
+" comps/uvm_agent.svh
+"
+syn keyword     uvmClass                        uvm_agent
+
+" comps/uvm_env.svh
+
+syn keyword     uvmClass                        uvm_env
+
 " macros/uvm_callback.svh
 
 syn keyword     uvmClass                        uvm_callback
@@ -158,6 +166,56 @@ syn keyword     uvmClass                        uvm_typeid
 " macros/uvm_callback_defines.svh
 
 syn match       uvmFunction                     "\`uvm_register_cb"
+
+" macros/uvm_object_defines.svh
+"
+syn match uvmMacro              "\`uvm_field_utils_begin"
+syn match uvmMacro              "\`uvm_field_utils_end"
+syn match uvmMacro              "\`uvm_object_utils"
+syn match uvmMacro              "\`uvm_object_param_utils"
+syn match uvmMacro              "\`uvm_object_utils_begin"
+syn match uvmMacro              "\`uvm_object_param_utils_begin"
+syn match uvmMacro              "\`uvm_object_utils_end"
+syn match uvmMacro              "\`uvm_component_utils"
+syn match uvmMacro              "\`uvm_component_param_utils"
+syn match uvmMacro              "\`uvm_component_utils_begin"
+syn match uvmMacro              "\`uvm_component_param_utils_begin"
+syn match uvmMacro              "\`uvm_component_utils_end"
+syn match uvmMacro              "\`uvm_field_int"
+syn match uvmMacro              "\`uvm_field_real"
+syn match uvmMacro              "\`uvm_field_enum"
+syn match uvmMacro              "\`uvm_field_object"
+syn match uvmMacro              "\`uvm_field_event"
+syn match uvmMacro              "\`uvm_field_string"
+syn match uvmMacro              "\`uvm_field_array_enum"
+syn match uvmMacro              "\`uvm_field_array_int"
+syn match uvmMacro              "\`uvm_field_sarray_int"
+syn match uvmMacro              "\`uvm_field_sarray_enum"
+syn match uvmMacro              "\`uvm_field_array_object"
+syn match uvmMacro              "\`uvm_field_sarray_object"
+syn match uvmMacro              "\`uvm_field_array_string"
+syn match uvmMacro              "\`uvm_field_sarray_string"
+syn match uvmMacro              "\`uvm_field_queue_enum"
+syn match uvmMacro              "\`uvm_field_queue_int"
+syn match uvmMacro              "\`uvm_field_queue_object"
+syn match uvmMacro              "\`uvm_field_queue_string"
+syn match uvmMacro              "\`uvm_field_aa_int_string"
+syn match uvmMacro              "\`uvm_field_aa_string_string"
+syn match uvmMacro              "\`uvm_field_aa_object_string"
+syn match uvmMacro              "\`uvm_field_aa_int_int"
+syn match uvmMacro              "\`uvm_field_aa_int_int"
+syn match uvmMacro              "\`uvm_field_aa_int_int_unsigned"
+syn match uvmMacro              "\`uvm_field_aa_int_integer"
+syn match uvmMacro              "\`uvm_field_aa_int_integer_unsigned"
+syn match uvmMacro              "\`uvm_field_aa_int_byte"
+syn match uvmMacro              "\`uvm_field_aa_int_byte_unsigned"
+syn match uvmMacro              "\`uvm_field_aa_int_shortint"
+syn match uvmMacro              "\`uvm_field_aa_int_shortint_unsigned"
+syn match uvmMacro              "\`uvm_field_aa_int_longint"
+syn match uvmMacro              "\`uvm_field_aa_int_longint_unsigned"
+syn match uvmMacro              "\`uvm_field_aa_int_key"
+syn match uvmMacro              "\`uvm_field_aa_string_int"
+syn match uvmMacro              "\`uvm_field_aa_object_int"
 
 " base/uvm_pool.svh
 syn keyword     uvmClass                        uvm_pool
