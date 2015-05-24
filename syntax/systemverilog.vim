@@ -33,12 +33,15 @@ syn keyword     systemverilogStatement          task endtask
 syn keyword     systemverilogStatement          package endpackage
 syn keyword     systemverilogStatement          module endmodule
 syn keyword     systemverilogStatement          interface endinterface
+syn keyword     systemverilogStatement          property endproperty
+syn keyword     systemverilogStatement          case endcase default
 syn keyword     systemverilogStatement          import
 syn keyword     systemverilogStatement          new
 syn keyword     systemverilogStatement          parameter
 syn keyword     systemverilogStatement          force
 syn keyword     systemverilogStatement          assign
 syn keyword     systemverilogStatement          repeat
+syn keyword     systemverilogStatement          posedge assert
 
 syn keyword     systemverilogConditional        if else while foreach for do
 syn keyword     systemverilogConditional        fork join disable join_any join_none wait
@@ -52,11 +55,13 @@ syn keyword     systemverilogIdentifier         super this
 syn keyword     systemverilogStorageClass       rand
 
 syn keyword     systemverilogTypeStatement      void
+syn keyword     systemverilogTypeStatement      automatic
 syn keyword     systemverilogTypeStatement      int integer
 syn keyword     systemverilogTypeStatement      string
-syn keyword     systemverilogTypeStatement      logic bit
+syn keyword     systemverilogTypeStatement      logic bit byte
 syn keyword     systemverilogTypeStatement      event time
 syn keyword     systemverilogTypeStatement      process
+syn match       systemverilogFunction           "\(process::\)\@<=self"
 syn keyword     systemverilogTypeStatement      reg
 syn keyword     systemverilogStatement          type
 syn keyword     systemverilogStatement          enum
@@ -69,8 +74,15 @@ syn keyword     systemverilogStatement          null
 
 syn match       systemverilogSystemTask         "\$sformatf\>"
 syn match       systemverilogSystemTask         "\$sformat\>"
+syn match       systemverilogSystemTask         "\$swrite\>"
 syn match       systemverilogSystemTask         "\$bits"
 syn match       systemverilogSystemTask         "\$cast"
+syn match       systemverilogSystemTask         "\$urandom"
+syn match       systemverilogSystemTask         "\$isunknown"
+syn match       systemverilogSystemTask         "\$realtime"
+syn match       systemverilogSystemTask         "\$f\(display\|open\|close\)"
+syn match       systemverilogSystemTask         "\$time"
+syn match       systemverilogSystemTask         "\$error"
 
 syn match       systemverilogCompilerDirective "`celldefine"
 syn match       systemverilogCompilerDirective "`default_nettype"
@@ -98,15 +110,32 @@ syn keyword     uvmClass                        uvm_component
     syn keyword uvmClass                        uvm_sequence_base
     syn keyword uvmClass                        uvm_objection
     syn keyword uvmClass                        uvm_severity
-    syn keyword uvmClass                        uvm_action
-    syn keyword uvmClass                        uvm_transaction
-    syn keyword uvmClass                        uvm_recorder
     syn keyword uvmClass                        uvm_event_pool
     syn keyword uvmClass                        uvm_printer
-    syn keyword uvmClass                        uvm_verbosity
     syn keyword uvmIdentifier                   uvm_build_phase
     syn keyword uvmFunction                     uvm_report_fatal
 
+" base/uvm_event.svh
+
+syn keyword uvmClass                            uvm_event_base
+syn keyword uvmClass                            uvm_event
+
+" base/uvm_event_callback.svh
+
+syn keyword uvmClass                            uvm_event_callback
+
+
+" base/uvm_transaction.svh
+
+syn keyword uvmClass                            uvm_transaction
+
+" base/uvm_report_server.svh
+
+syn keyword uvmClass        uvm_report_server
+syn keyword uvmClass        uvm_default_report_server
+    syn keyword uvmClass        uvm_report_catcher
+    syn match   uvmFunction     "\(uvm_report_catcher::\)\@<=process_all_report_catchers"
+    syn keyword uvmClass        uvm_report_message_element_container
 
 " base/uvm_root.svh
 
@@ -139,11 +168,118 @@ syn keyword     uvmClass                        uvm_config_db
 
 syn keyword     uvmClass                        uvm_config_wrapper
 
+" base/uvm_factory.svh
+
+syn keyword     uvmClass                        uvm_object_wrapper
+syn keyword     uvmClass                        uvm_factory
+syn keyword     uvmClass                        uvm_default_factory
+syn keyword     uvmClass                        uvm_factory_override
+syn keyword     uvmClass                        uvm_factory_queue_class
+
+" base/uvm_links.svh
+
+syn keyword uvmClass                            uvm_link_base
+syn keyword uvmClass                            uvm_parent_child_link
+syn match   uvmFunction                         "\(uvm_parent_child_link::\)\@<=get_link"
+syn keyword uvmClass                            uvm_cause_effect_link
+syn match   uvmFunction                         "\(uvm_cause_effect_link::\)\@<=get_link"
+syn keyword uvmClass                            uvm_related_link
+syn match   uvmFunction                         "\(uvm_related_link::\)\@<=get_link"
+
+
 " base/uvm_object.svh
 
 syn keyword     uvmClass                        uvm_object
 
     syn keyword uvmFunction                     uvm_report_warning
+
+    syn keyword uvmClass                        uvm_comparer
+    syn keyword uvmClass                        uvm_packer
+
+syn match       systemverilogIdentifier         "\(::\)\@<=type_id\(::\)\@="
+syn match       systemverilogFunction           "\(::type_id::\)\@<=create"
+" base/uvm_object_globals.svh
+
+syn keyword     uvmTypedef                      uvm_bitstream_t
+syn keyword     uvmTypedef                      uvm_integral_t
+syn keyword     uvmEnum                         uvm_radix_enum
+syn keyword     uvmFunction                     uvm_radix_to_string
+syn keyword     uvmEnum                         uvm_recursion_policy_enum
+syn keyword     uvmEnum                         uvm_active_passive_enum
+syn keyword     uvmTypedef                      uvm_severity_type
+syn keyword     uvmEnum                         uvm_action
+syn keyword     uvmEnum                         uvm_action_type
+syn keyword     uvmEnum                         uvm_verbosity
+syn keyword     uvmTypedef                      UVM_FILE
+syn keyword     uvmEnum                         uvm_port_type_e
+syn keyword     uvmEnum                         uvm_sequencer_arb_mode
+syn keyword     uvmTypedef                      UVM_SEQ_ARB_TYPE
+syn keyword     uvmEnum                         uvm_sequence_state
+syn keyword     uvmTypedef                      uvm_sequence_state_enum
+syn keyword     uvmEnum                         uvm_sequence_lib_mode
+syn keyword     uvmEnum                         uvm_phase_type
+syn keyword     uvmEnum                         uvm_phase_state
+syn keyword     uvmEnum                         uvm_wait_op
+syn keyword     uvmEnum                         uvm_objection_event
+
+    syn keyword     uvmClass                        uvm_table_printer
+    syn keyword     uvmClass                        uvm_tree_printer
+    syn keyword     uvmClass                        uvm_line_printer
+    syn keyword     uvmClass                        uvm_text_tr_database
+
+syn keyword     uvmIdentifier                   uvm_default_table_printer
+syn keyword     uvmIdentifier                   uvm_default_tree_printer
+syn keyword     uvmIdentifier                   uvm_default_line_printer
+syn keyword     uvmIdentifier                   uvm_default_printer
+syn keyword     uvmIdentifier                   uvm_default_packer
+syn keyword     uvmIdentifier                   uvm_default_comparer
+
+
+" base/uvm_recorder.svh
+
+syn keyword uvmClass                            uvm_recorder
+syn match   uvmFunction                         "\(uvm_recorder::\)\@<=get_recorder_from_handle"
+
+" base/uvm_registry.svh
+
+syn keyword uvmClass                            uvm_component_registry
+syn keyword uvmClass                            uvm_object_registry
+
+" base/uvm_misc.svh
+
+syn keyword     uvmClass                        uvm_void
+syn keyword     uvmClass                        uvm_status_container
+syn keyword     uvmEnum                         uvm_apprepend
+syn keyword     uvmClass                        uvm_scope_stack
+syn keyword     uvmIdentifier                   uvm_global_random_seed
+syn keyword     uvmClass                        uvm_seed_map
+syn keyword     uvmIdentifier                   uvm_random_seed_table_lookup
+syn keyword     uvmFunction                     uvm_instance_scope
+syn keyword     uvmFunction                     uvm_oneway_hash
+syn keyword     uvmFunction                     uvm_create_random_seed
+syn keyword     uvmFunction                     uvm_object_value_str
+syn keyword     uvmFunction                     uvm_leaf_scope
+syn keyword     uvmFunction                     uvm_bitstream_to_string
+syn keyword     uvmFunction                     uvm_integral_to_string
+syn keyword     uvmFunction                     uvm_vector_to_string
+syn keyword     uvmFunction                     uvm_get_array_index_int
+syn keyword     uvmFunction                     uvm_get_array_index_string
+syn keyword     uvmFunction                     uvm_is_array
+syn keyword     uvmFunction                     uvm_has_wildcard
+syn keyword     uvmClass                        uvm_utils
+
+    " Referred
+    syn keyword uvmClass                        uvm_coreservice_t
+
+" base/uvm_tr_database.svh
+
+syn keyword     uvmClass                        uvm_tr_database
+
+" base/uvm_tr_stream.svh
+
+syn keyword uvmClass                        uvm_tr_stream
+    syn keyword uvmClass                            uvm_text_recorder
+syn keyword uvmClass                        uvm_text_tr_stream
 
 " comps/uvm_agent.svh
 "
@@ -153,6 +289,16 @@ syn keyword     uvmClass                        uvm_agent
 
 syn keyword     uvmClass                        uvm_env
 
+" dap/uvm_set_before_get_dap_base.svh
+
+syn keyword     uvmClass                        uvm_set_get_dap_base
+
+" dap/uvm_set_before_get_dap.svh
+
+syn keyword     uvmClass                        uvm_set_before_get_dap
+
+" dap/uvm_simple_lock_dap.svh
+syn keyword     uvmClass                        uvm_simple_lock_dap
 " macros/uvm_callback.svh
 
 syn keyword     uvmClass                        uvm_callback
@@ -225,6 +371,7 @@ syn keyword     uvmClass                        uvm_pool
 syn keyword     uvmClass                        uvm_sequence_item
     syn match   uvmMacro                        "\`uvm_object_registry"
     syn keyword uvmClass                        uvm_report_handler
+    syn keyword uvmClass                        uvm_report_message
 
 " seq/uvm_sequence.svh
 
@@ -234,9 +381,9 @@ syn keyword     uvmClass                        uvm_sequence
 
 syn keyword uvmClass                        uvm_sequencer_base
     syn keyword uvmClass                        uvm_sequence_request
-    syn keyword uvmClass                        uvm_sequencer_arb_mode
     syn match   uvmMacro                        "\`uvm_warning"
     syn match   uvmMacro                        "\`uvm_info"
+    syn match   uvmMacro                        "\`uvm_error"
 
 
 " seq/uvm_sequencer_param_base.svh
@@ -273,15 +420,15 @@ syn keyword     uvmClass                        uvm_test
 
 " macros/uvm_sequence_defines.svh
 
-syn match       uvmMacro                        "\`uvm_create"
+syn match       uvmMacro                        "\`uvm_create\>"
 syn match       uvmMacro                        "\`uvm_create_on"
-syn match       uvmMacro                        "\`uvm_do"
+syn match       uvmMacro                        "\`uvm_do\>"
 syn match       uvmMacro                        "\`uvm_do_with"
-syn match       uvmMacro                        "\`uvm_do_pri"
+syn match       uvmMacro                        "\`uvm_do_pri\>"
 syn match       uvmMacro                        "\`uvm_do_pri_with"
 syn match       uvmMacro                        "\`uvm_do_on_pri_with"
-syn match       uvmMacro                        "\`uvm_do_on"
-syn match       uvmMacro                        "\`uvm_do_on_pri"
+syn match       uvmMacro                        "\`uvm_do_on\>"
+syn match       uvmMacro                        "\`uvm_do_on_pri\>"
 syn match       uvmMacro                        "\`uvm_do_on_with"
 
 syn match       uvmMacro                        "\`uvm_send"
@@ -297,15 +444,10 @@ syn match       uvmMacro                        "\`uvm_declare_p_sequencer"
 
 " others
 syn keyword     uvmClass                        uvm_blocking_put_port
-syn keyword     uvmClass                        uvm_void
 syn keyword     uvmClass                        uvm_report_object
-syn keyword     uvmClass                        uvm_object_wrapper
 syn keyword     uvmClass                        uvm_phase
 syn keyword     uvmClass                        uvm_domain
-syn keyword     uvmClass                        uvm_bitstream_t
 syn keyword     uvmFunction                     get_config_int
-
-syn match       uvmMacro                        "\`uvm_object_utils"
 
 " Stuff can not be published
 runtime syntax/systemverilog-local.vim
@@ -333,9 +475,12 @@ hi def link systemverilogString             String
 hi def link systemverilogIdentifier         Identifier
 hi def link systemverilogSystemTask         Macro
 hi def link systemverilogCompilerDirective  Define
+hi def link systemverilogFunction           Function
 hi def link uvmMacro                        Macro
 hi def link uvmClass                        Type
 hi def link uvmPackage                      Identifier
 hi def link uvmFunction                     Function
 hi def link uvmIdentifier                   Identifier
+hi def link uvmEnum                         Structure
+hi def link uvmTypedef                      Typedef
 let b:current_syntax = "systemverilog"
