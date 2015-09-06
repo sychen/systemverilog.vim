@@ -68,6 +68,66 @@ syn keyword     systemverilogStatement          enum
 
 syn keyword     systemverilogTypeDefStatement   typedef
 
+" 6.16 String Data Type
+
+syn match       systemverilogFunction           "\(\.\)\@<=\(len\|puts\|getc\)"
+syn match       systemverilogFunction           "\(\.\)\@<=\(toupper\|tolower\)"
+syn match       systemverilogFunction           "\(\.\)\@<=\(compare\|icompare\|substr\)"
+syn match       systemverilogFunction           "\(\.\)\@<=\(atoi\|atohex\|atooct\|atobin\|atoreal\)"
+syn match       systemverilogFunction           "\(\.\)\@<=\(itoa\|hextoa\|octtoa\|bintoa\|realtoa\)"
+
+" 6.19 Enumeration
+
+syn match       systemverilogFunction           "\(\.\)\@<=\(first\|last\|next\|prev\|num\|name\)"
+
+" 7 Aggregation Data Types
+
+syn match       systemverilogFunction           "\(\.\)\@<=\(size\|delete\|exists\|insert\)"
+syn match       systemverilogFunction           "\(\.\)\@<=\(pop\|push\)_\(front\|back\)"
+syn match       systemverilogFunction           "\(\.\)\@<=find\(_first\|_last\)\?\(_index\)\?\>"
+
+syn match  systemverilogFunction       "\.index\>"
+syn match  systemverilogFunction       "\.min\>"
+syn match  systemverilogFunction       "\.max\>"
+syn match  systemverilogFunction       "\.unique\>"
+syn match  systemverilogFunction       "\.unique_index\>"
+syn match  systemverilogFunction       "\.sort\>"
+syn match  systemverilogFunction       "\.rsort\>"
+syn match  systemverilogFunction       "\.shuffle\>"
+syn match  systemverilogFunction       "\.reverse\>"
+syn match  systemverilogFunction       "\.sum\>"
+syn match  systemverilogFunction       "\.product\>"
+syn match  systemverilogFunction       "\.xor\>"
+syn match  systemverilogFunction       "\.status\>"
+syn match  systemverilogFunction       "\.kill\>"
+syn match  systemverilogFunction       "\.self\>"
+syn match  systemverilogFunction       "\.await\>"
+syn match  systemverilogFunction       "\.suspend\>"
+syn match  systemverilogFunction       "\.resume\>"
+syn match  systemverilogFunction       "\.get\>"
+syn match  systemverilogFunction       "\.put\>"
+syn match  systemverilogFunction       "\.peek\>"
+syn match  systemverilogFunction       "\.try_get\>"
+syn match  systemverilogFunction       "\.try_peek\>"
+syn match  systemverilogFunction       "\.try_put\>"
+syn match  systemverilogFunction       "\.data\>"
+syn match  systemverilogFunction       "\.eq\>"
+syn match  systemverilogFunction       "\.neq\>"
+syn match  systemverilogFunction       "\.new\>"
+syn match  systemverilogFunction       "\.empty\>"
+syn match  systemverilogFunction       "\.front\>"
+syn match  systemverilogFunction       "\.back\>"
+syn match  systemverilogFunction       "\.insert\>"
+syn match  systemverilogFunction       "\.insert_range\>"
+syn match  systemverilogFunction       "\.erase\>"
+syn match  systemverilogFunction       "\.erase_range\>"
+syn match  systemverilogFunction       "\.set\>"
+syn match  systemverilogFunction       "\.swap\>"
+syn match  systemverilogFunction       "\.clear\>"
+syn match  systemverilogFunction       "\.purge\>"
+syn match  systemverilogFunction       "\.start\>"
+syn match  systemverilogFunction       "\.finish\>"
+
 syn match       systemverilogClass              "vmm_[a-z_]\+\>"
 
 syn keyword     systemverilogStatement          null
@@ -302,6 +362,7 @@ syn keyword     uvmClass                        uvm_simple_lock_dap
 " macros/uvm_callback.svh
 
 syn keyword     uvmClass                        uvm_callback
+syn keyword     uvmClass                        uvm_callback_iter
 syn keyword     uvmClass                        uvm_callbacks
 syn keyword     uvmClass                        uvm_typed_callbacks
 syn keyword     uvmClass                        uvm_derived_callbacks
@@ -311,7 +372,15 @@ syn keyword     uvmClass                        uvm_typeid
 
 " macros/uvm_callback_defines.svh
 
-syn match       uvmFunction                     "\`uvm_register_cb"
+syn match       uvmMacro                        "\`uvm_register_cb"
+syn match       uvmMacro                        "\`uvm_set_super_type"
+syn match       uvmMacro                        "\`uvm_do_callbacks"
+syn match       uvmMacro                        "\`uvm_do_obj_callbacks"
+syn match       uvmMacro                        "\`uvm_do_callbacks_exit_on"
+syn match       uvmMacro                        "\`uvm_do_obj_callbacks_exit_on"
+
+syn match       uvmMacro                        "\`uvm_cb_trace"
+syn match       uvmMacro                        "\`uvm_cb_trace_noobj"
 
 " macros/uvm_object_defines.svh
 "
@@ -384,6 +453,7 @@ syn keyword uvmClass                        uvm_sequencer_base
     syn match   uvmMacro                        "\`uvm_warning"
     syn match   uvmMacro                        "\`uvm_info"
     syn match   uvmMacro                        "\`uvm_error"
+    syn match   uvmMacro                        "\`uvm_fatal"
 
 
 " seq/uvm_sequencer_param_base.svh
